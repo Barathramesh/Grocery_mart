@@ -26,6 +26,7 @@ const Footer = () => {
                         </div>
                     ))}
                 </div>
+                
             </div>
             <p className="py-4 text-center text-sm md:text-base ">
                 Copyright {new Date().getFullYear()} © barathramesh.co All Right Reserved.
