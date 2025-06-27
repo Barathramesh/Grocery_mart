@@ -10,8 +10,6 @@ lerna-debug.log*
 # Dependency directories
 node_modules/
 
-#Just ignorig assest
-assets
 
 # Build directories
 dist/

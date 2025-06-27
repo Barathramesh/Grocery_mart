@@ -82,7 +82,7 @@ const ProductDetails = () => {
                             Add to Cart
                         </button>
                         <button  onClick={()=> {addToCart(product._id); navigate("/cart")}}
-                         className="w-full py-3.5 cursor-pointer font-medium bg-primary text-white hover:bg-primary-dull transition" >
+                         className="w-full py-3.5 cursor-pointer font-medium bg-primary text-white hover:bg-primary transition" >
                             Buy now
                         </button>
                     </div>
