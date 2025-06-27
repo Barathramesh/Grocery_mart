@@ -82,7 +82,6 @@ const AddAddress = () => {
               <button className='w-full mt-6 bg-primary text-white py-3 hover:bg-primary-dull
               transition cursor-pointer uppercase'>Save Address</button>
 
-
           </form>
         </div>
         <img className='md:mr-16 mb-16 md:mt-0' src={assets.add_address_iamge} alt="Add Address" />
