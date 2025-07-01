@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDB from './configs/db.js';
 import 'dotenv/config';
 import userRouter from './route/userRoute.js';
+import sellerRouter from './route/sellerRoute.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,6 +21,7 @@ app.use(cors({origin: allowedOrigin, credentials: true}));
 
 app.get('/',(req, res)=> res.send("API is working"));
 app.use('/api/user' , userRouter)
+app.use('/api/seller' , sellerRouter)
 
 
 app.listen(port,()=>{
