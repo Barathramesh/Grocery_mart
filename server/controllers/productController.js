@@ -17,11 +17,11 @@ export const addProduct = async (req, res) => {
         ))
 
         await Product.create({...productData, image: imagesurl});
-        res.json({success: true, message: 'Product added successfully'});
+        return res.json({success: true, message: 'Product added successfully'});
 
     } catch (error) {
         console.log("Add Product error: ", error.message);
-        res.status(500).json({success: false, message: error.message});
+        return res.status(500).json({success: false, message: error.message});
     }
 }
 
@@ -29,10 +29,10 @@ export const addProduct = async (req, res) => {
 export const productlist = async (req, res) => {
     try {
         const products = await Product.find({});
-        res.json({success: true, products});
+        return res.json({success: true, products});
     } catch (error) {
         console.log(error.message);
-        res.status(500).json({success: false, message: error.message});
+        return res.status(500).json({success: false, message: error.message});
     }
 }
 
@@ -41,10 +41,10 @@ export const productById= async (req, res) => {
     try {
         const {id} = req.body;
         const product = await Product.findById(id);
-        res.json({success: true, product});
+        return res.json({success: true, product});
     } catch (error) {
         console.log(error.message);
-        res.status(500).json({success: false, message: error.message})
+        return res.status(500).json({success: false, message: error.message})
     }
 }
 
@@ -55,6 +55,6 @@ export const changeStock = async (req, res) => {
             await Product.findByIdAndUpdate(id, inStock)
         } catch (error) {
            console.log(error.message);
-           res.status(500).json({success: false, message: error.message})
+           return res.status(500).json({success: false, message: error.message})
         }
 }
