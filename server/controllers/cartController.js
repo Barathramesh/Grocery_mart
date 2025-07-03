@@ -8,7 +8,7 @@ export const updateCart = async (req, res) => {
         await User.findByIdAndUpdate(userId, {cartItems})
         res.json({success: true, message : "Cart Updated"});
     } catch (error) {
-        console.log("Cart updation faailed:", error.message);
+        console.log("Cart updation failed:", error.message);
         res.json({success: false, message: error.message});
     }
 }
