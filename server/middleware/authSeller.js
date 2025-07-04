@@ -8,7 +8,7 @@ const authSeller = async (req, res, next) => {
         console.log('No token found in request');
         return res.status(401).json({
             success: false,
-            message: "Please login first"
+            message: 'Not Authorized'
         });
     }
 
