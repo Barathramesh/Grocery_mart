@@ -13,7 +13,8 @@ export const addAddress = async (req, res) => {
     
         const newAddress = await Address.create(
             {userId,
-            ...address})
+            ...address,
+        createdAt: new Date()})
         res.json({success: true, message : "Address added successfully",address: newAddress});
     } catch (error) {
          console.log("Add Address failed:", error.message);
@@ -25,8 +26,14 @@ export const addAddress = async (req, res) => {
 export const getAddress = async (req, res) => {
     try {
         const {userId} = req.query;
-        const addresses = await Address.find({userId});
-        res.json({success: true, addresses });
+          if (!userId) {
+            return res.status(400).json({
+                success: false,
+                message: "userId is required as a query parameter"
+            });
+        }
+        const addresses = await Address.find({userId}).sort({_id:-1 });
+        res.json({success: true, addresses: addresses || [] });
     } catch (error) {
         console.log("Get Address failed:", error.message);
         res.json({success: false, message: error.message});
