@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
-import { assets, dummyAddress } from "../assets/assets";
+import { assets } from "../assets/assets";
 import toast from "react-hot-toast";
 
 const Cart = () => {
@@ -62,6 +62,20 @@ const Cart = () => {
                 }else{
                     toast.error(data.message)
                 }
+            } else {
+                // Place Order with Stripe
+                const {data} = await axios.post('/api/order/stripe', {
+                    userId: user._id,
+                    items: cartArray.map(item=> ({product: item._id, quantity: item.quantity})),
+                    address: selectedAddress._id
+                })
+
+                if(data.success){
+                    setCartItems({})
+                    window.location.replace(data.url)
+                }else{
+                    toast.error(data.message)
+                }
             }
         } catch (error) {
             toast.error(error.message)
@@ -95,7 +109,8 @@ const Cart = () => {
                 </div>
 
                 {cartArray.map((product, index) => (
-                    <div key={index} className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-sm md:text-base font-medium pt-3">
+                    <div key={index} className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 items-center
+                     text-sm md:text-base font-medium pt-3">
                         <div className="flex items-center md:gap-6 gap-3">
                             <div onClick={()=>{
                                 navigate(`/products/${product.category.toLowerCase()}/${product._id}`); scrollTo(0,0)
